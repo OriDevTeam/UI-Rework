@@ -1366,7 +1366,6 @@ void initchr()
 	PyModule_AddIntConstant(poModule, "MOTION_CLAP",						CRaceMotionData::NAME_CLAP);
 	PyModule_AddIntConstant(poModule, "MOTION_DANCE_1",						CRaceMotionData::NAME_DANCE_1);
 	PyModule_AddIntConstant(poModule, "MOTION_DANCE_2",						CRaceMotionData::NAME_DANCE_2);
-
 	PyModule_AddIntConstant(poModule, "MOTION_DANCE_3",						CRaceMotionData::NAME_DANCE_3);
 	PyModule_AddIntConstant(poModule, "MOTION_DANCE_4",						CRaceMotionData::NAME_DANCE_4);
 	PyModule_AddIntConstant(poModule, "MOTION_DANCE_5",						CRaceMotionData::NAME_DANCE_5);

@@ -203,6 +203,7 @@ class CPythonPlayer : public CSingleton<CPythonPlayer>, public IAbstractPlayer
 		bool	NEW_SetMouseFunc(int eMBType, int eMBFunc);
 		int		NEW_GetMouseFunc(int eMBT);
 		void	NEW_SetMouseMiddleButtonState(int eMBState);
+		void	SetMouseWheel(int length);
 
 		void	NEW_SetAutoCameraRotationSpeed(float fRotSpd);
 		void	NEW_ResetCameraRotation();

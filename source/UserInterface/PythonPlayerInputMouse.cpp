@@ -278,7 +278,13 @@ void CPythonPlayer::NEW_SetMouseMiddleButtonState(int eMBState)
 	NEW_SetMouseCameraState(eMBState);
 }
 
-
+void CPythonPlayer::SetMouseWheel(int length)
+{
+	CCameraManager& rkCmrMgr = CCameraManager::Instance();
+	CCamera* pkCmrCur = rkCmrMgr.GetCurrentCamera();
+	if (pkCmrCur)
+		pkCmrCur->Wheel(length);
+}
 
 void CPythonPlayer::NEW_RefreshMouseWalkingDirection()
 {

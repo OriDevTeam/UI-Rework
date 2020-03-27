@@ -280,7 +280,7 @@ class CPythonApplication : public CMSApplication, public CInputKeyboard, public 
 		void OnMouseUpdate();
 		void OnMouseRender();
 
-		void OnMouseWheel(int nLen);
+		void OnMouseWheel(int length);
 		void OnMouseMove(int x, int y);
 		void OnMouseMiddleButtonDown(int x, int y);
 		void OnMouseMiddleButtonUp(int x, int y);

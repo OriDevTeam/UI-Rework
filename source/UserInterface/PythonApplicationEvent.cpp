@@ -58,14 +58,26 @@ void CPythonApplication::OnMouseMiddleButtonUp(int x, int y)
 		SetCursorVisible(TRUE);
 }
 
-void CPythonApplication::OnMouseWheel(int nLen)
+void CPythonApplication::OnMouseWheel(int length)
 {
-	CCameraManager& rkCmrMgr=CCameraManager::Instance();
-	CCamera* pkCmrCur=rkCmrMgr.GetCurrentCamera();
-	if (pkCmrCur)
-		pkCmrCur->Wheel(nLen);
-}
+	UI::CWindowManager& rkWndMgr = UI::CWindowManager::Instance();
+	UI::CWindow* pointWindow = rkWndMgr.GetPointWindow();
+	
+	// meh, lets do this for now
+	if (strcmp(pointWindow->GetName(), "GameWindow") == 1)
+	{
+		rkWndMgr.RunMouseWheel(length);
+		return;
+	}
+	else
+	{
+		CCameraManager& rkCmrMgr = CCameraManager::Instance();
+		CCamera* pkCmrCur = rkCmrMgr.GetCurrentCamera();
+		if (pkCmrCur)
+			pkCmrCur->Wheel(length);
+	}
 
+}
 
 void CPythonApplication::OnMouseMove(int x, int y)
 {

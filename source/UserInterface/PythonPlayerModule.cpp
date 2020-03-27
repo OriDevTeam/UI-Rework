@@ -435,6 +435,18 @@ PyObject* playerSetAutoCameraRotationSpeed(PyObject* poSelf, PyObject* poArgs)
 	return Py_BuildNone();
 }
 
+PyObject* playerSetMouseWheel(PyObject* poSelf, PyObject* poArgs)
+{
+	int length;
+	if (!PyTuple_GetInteger(poArgs, 0, &length))
+		return Py_BuildException();
+
+	CPythonPlayer& rkPlayer = CPythonPlayer::Instance();
+	rkPlayer.SetMouseWheel(length);
+
+	return Py_BuildNone();
+}
+
 PyObject* playerSetMouseState(PyObject* poSelf, PyObject* poArgs)
 {
 	int eMBT;
@@ -2175,6 +2187,7 @@ void initPlayer()
 		{ "SetGameWindow",				playerSetGameWindow,				METH_VARARGS },
 		{ "RegisterEffect",				playerRegisterEffect,				METH_VARARGS },
 		{ "RegisterCacheEffect",		playerRegisterCacheEffect,			METH_VARARGS },
+		{ "SetMouseWheel",				playerSetMouseWheel,				METH_VARARGS },
 		{ "SetMouseState",				playerSetMouseState,				METH_VARARGS },
 		{ "SetMouseFunc",				playerSetMouseFunc,					METH_VARARGS },
 		{ "GetMouseFunc",				playerGetMouseFunc,					METH_VARARGS },

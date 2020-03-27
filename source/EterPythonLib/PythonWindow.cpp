@@ -377,6 +377,11 @@ namespace UI
 		}
 	}
 
+	void CWindow::OnMouseWheel(int length)
+	{
+		PyCallClassMemberFunc(m_poHandler, "OnMouseWheel", Py_BuildValue("(i)", length));
+	}
+
 	void CWindow::OnMouseDrag(long lx, long ly)
 	{
 		PyCallClassMemberFunc(m_poHandler, "OnMouseDrag", Py_BuildValue("(ii)", lx, ly));

@@ -179,7 +179,7 @@ LRESULT CPythonApplication::WindowProcedure(HWND hWnd, UINT uiMsg, WPARAM wParam
 			}
 			return 0;
 
-		case 0x20a:
+		case WM_MOUSEWHEEL:
 			if (WebBrowser_IsVisible())
 			{
 				// 웹브라우저 상태일때는 휠 작동 안되도록 처리

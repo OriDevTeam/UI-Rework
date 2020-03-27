@@ -110,6 +110,7 @@ namespace UI
 			void		Update();
 			void		Render();
 
+			void		RunMouseWheel(int length);
 			void		RunMouseMove(long x, long y);
 			void		RunMouseLeftButtonDown(long x, long y);
 			void		RunMouseLeftButtonUp(long x, long y);

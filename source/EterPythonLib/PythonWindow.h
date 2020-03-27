@@ -108,6 +108,7 @@ namespace UI
 			virtual void	OnSetFocus();
 			virtual void	OnKillFocus();
 
+			virtual void	OnMouseWheel(int length);
 			virtual void	OnMouseDrag(long lx, long ly);
 			virtual void	OnMouseOverIn();
 			virtual void	OnMouseOverOut();

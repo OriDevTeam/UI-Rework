@@ -748,6 +748,15 @@ namespace UI
 		ry = m_lMouseY;
 	}
 
+	void CWindowManager::RunMouseWheel(int length)
+	{
+		CWindow * pWin = GetPointWindow();
+		if (!pWin)
+			return;
+
+		pWin->OnMouseWheel(length);
+	}
+
 	void CWindowManager::RunMouseMove(long x, long y)
 	{
 		if (IsAttaching())
