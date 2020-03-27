@@ -432,6 +432,15 @@ PyObject * wndMgrSetParent(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndMgrGetRootParent(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWin;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWin))
+		return Py_BuildException();
+	
+	return Py_BuildValue("i", pWin->GetRoot());
+}
+
 PyObject * wndMgrSetPickAlways(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWin;
@@ -2342,6 +2351,7 @@ void initwndMgr()
 		{ "Show",						wndMgrShow,							METH_VARARGS },
 		{ "Hide",						wndMgrHide,							METH_VARARGS },
 		{ "IsShow",						wndMgrIsShow,						METH_VARARGS },
+		{ "GetRootParent",				wndMgrGetRootParent,				METH_VARARGS },
 		{ "SetParent",					wndMgrSetParent,					METH_VARARGS },
 		{ "SetPickAlways",				wndMgrSetPickAlways,				METH_VARARGS },
 
