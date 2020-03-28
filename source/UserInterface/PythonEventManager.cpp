@@ -300,7 +300,7 @@ void CPythonEventManager::InsertText(int iIndex, const char * c_szText,int iX_po
 		pEventSet->pCurrentTextLine->SetValue(c_szText);
 		if (iX_pos == 0)
 		{
-			pEventSet->pCurrentTextLine->SetHorizonalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_CENTER);
+			pEventSet->pCurrentTextLine->SetHorizontalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_CENTER);
 		}
 	}
 	
@@ -673,7 +673,7 @@ void CPythonEventManager::ProcessEventSet(TEventSet * pEventSet)
 		{
 			pEventSet->isTextCenterMode = true;
 			if (pEventSet->pCurrentTextLine)
-				pEventSet->pCurrentTextLine->SetHorizonalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_CENTER);
+				pEventSet->pCurrentTextLine->SetHorizontalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_CENTER);
 			break;
 		}
 		case EVENT_TYPE_TITLE_IMAGE:
@@ -1039,19 +1039,19 @@ void CPythonEventManager::__InsertLine(TEventSet& rEventSet, BOOL isCenter, int 
 	
 	if (rEventSet.isTextCenterMode || isCenter)
 	{
-		rEventSet.pCurrentTextLine->SetHorizonalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_CENTER);
+		rEventSet.pCurrentTextLine->SetHorizontalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_CENTER);
 		rEventSet.pCurrentTextLine->SetPosition(rEventSet.ix+rEventSet.iWidth/2, rEventSet.iy + rEventSet.iyLocal);
 	}
 	else
 	{
 		if (GetDefaultCodePage() == CP_1256)
 		{
-			rEventSet.pCurrentTextLine->SetHorizonalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_LEFT);
+			rEventSet.pCurrentTextLine->SetHorizontalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_LEFT);
 			rEventSet.pCurrentTextLine->SetPosition(rEventSet.ix + rEventSet.iWidth, rEventSet.iy + rEventSet.iyLocal);
 		}
 		else
 		{
-			rEventSet.pCurrentTextLine->SetHorizonalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_LEFT);
+			rEventSet.pCurrentTextLine->SetHorizontalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_LEFT);
 			rEventSet.pCurrentTextLine->SetPosition(rEventSet.ix, rEventSet.iy + rEventSet.iyLocal);
 		}		
 	}

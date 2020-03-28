@@ -11,6 +11,7 @@ This project aims to complement the UI with whats missing and rework aspects tha
  - SetMouseWheel
  - GetRootParent
  - GetHorizontalAlign
- - GetHorizontalAlign
+ - GetVerticalAlign
  - GetTextHorizontalAlign
- - GetTextHorizontalAlign
+ - GetTextVerticalAlign
+ 
