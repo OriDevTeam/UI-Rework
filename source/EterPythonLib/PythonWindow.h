@@ -288,7 +288,9 @@ namespace UI
 			void SetSecret(BOOL bFlag);
 			void SetOutline(BOOL bFlag);
 			void SetFeather(BOOL bFlag);
-			void SetMultiLine(BOOL bFlag);
+			void SetMultiLine(BOOL flag) { m_TextInstance.SetMultiLine(flag); }
+			bool IsMultiLine() {return m_TextInstance.IsMultiLine();
+			}
 			void SetFontName(const char * c_szFontName);
 			void SetFontColor(DWORD dwColor);
 			void SetLimitWidth(float fWidth);

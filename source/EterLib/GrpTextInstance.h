@@ -61,7 +61,10 @@ class CGraphicTextInstance
 		void SetSecret(bool Value);
 		void SetOutline(bool Value);
 		void SetFeather(bool Value);
-		void SetMultiLine(bool Value);
+
+		void SetMultiLine(bool Value) { m_isMultiLine = Value; }
+		bool IsMultiLine() { return m_isMultiLine; }
+
 		void SetLimitWidth(float fWidth);
 
 		void GetTextSize(int* pRetWidth, int* pRetHeight);

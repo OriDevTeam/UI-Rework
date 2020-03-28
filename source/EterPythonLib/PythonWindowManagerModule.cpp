@@ -1758,6 +1758,15 @@ PyObject * wndTextSetMultiLine(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndTextIsMultiLine(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	return Py_BuildValue("b", ((UI::CTextLine*)pWindow)->IsMultiLine());
+}
+
 PyObject * wndTextSetFontName(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2542,6 +2551,7 @@ void initwndMgr()
 		{ "SetOutline",					wndTextSetOutline,					METH_VARARGS },
 		{ "SetFeather",					wndTextSetFeather,					METH_VARARGS },
 		{ "SetMultiLine",				wndTextSetMultiLine,				METH_VARARGS },
+		{ "IsMultiLine",				wndTextIsMultiLine,					METH_VARARGS },
 		{ "SetText",					wndTextSetText,						METH_VARARGS },
 		{ "SetFontName",				wndTextSetFontName,					METH_VARARGS },
 		{ "SetFontColor",				wndTextSetFontColor,				METH_VARARGS },
@@ -2570,6 +2580,7 @@ void initwndMgr()
 		{ "SetDiffuseColor",			wndImageSetDiffuseColor,			METH_VARARGS },
 		{ "GetWidth",					wndImageGetWidth,					METH_VARARGS },
 		{ "GetHeight",					wndImageGetHeight,					METH_VARARGS },
+		
 		// ExpandedImageBox
 		{ "SetScale",					wndImageSetScale,					METH_VARARGS },
 		{ "GetWidthScale",				wndImageGetWidthScale,				METH_VARARGS },
@@ -2578,6 +2589,7 @@ void initwndMgr()
 		{ "SetRotation",				wndImageSetRotation,				METH_VARARGS },
 		{ "SetRenderingRect",			wndImageSetRenderingRect,			METH_VARARGS },
 		{ "SetRenderingMode",			wndImageSetRenderingMode,			METH_VARARGS },
+		
 		// AniImageBox
 		{ "SetDelay",					wndImageSetDelay,					METH_VARARGS },
 		{ "AppendImage",				wndImageAppendImage,				METH_VARARGS },

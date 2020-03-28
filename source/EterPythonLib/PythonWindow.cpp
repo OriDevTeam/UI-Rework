@@ -1435,7 +1435,7 @@ namespace UI
 		if (m_pImageInstance)
 			return ((CGraphicExpandedImageInstance*)m_pImageInstance)->GetWidthScale();
 
-		return 0;
+		return -1;
 	}
 	float CExpandedImageBox::GetHeightScale()
 	{

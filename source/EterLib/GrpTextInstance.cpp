@@ -997,11 +997,6 @@ void CGraphicTextInstance::SetFeather(bool Value)
 	}
 }
 
-void CGraphicTextInstance::SetMultiLine(bool Value)
-{
-	m_isMultiLine = Value;
-}
-
 void CGraphicTextInstance::SetMax(int iMax)
 {
 	m_iMax = iMax;
