@@ -393,6 +393,8 @@ namespace UI
 			virtual ~CExpandedImageBox();
 
 			void SetScale(float fx, float fy);
+			float GetWidthScale();
+			float GetHeightScale();
 			void SetOrigin(float fx, float fy);
 			void SetRotation(float fRotation);
 			void SetRenderingRect(float fLeft, float fTop, float fRight, float fBottom);

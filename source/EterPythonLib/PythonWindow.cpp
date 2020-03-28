@@ -1430,6 +1430,21 @@ namespace UI
 		CWindow::SetSize(long(float(GetWidth())*fx), long(float(GetHeight())*fy));
 	}
 
+	float CExpandedImageBox::GetWidthScale()
+	{
+		if (m_pImageInstance)
+			return ((CGraphicExpandedImageInstance*)m_pImageInstance)->GetWidthScale();
+
+		return 0;
+	}
+	float CExpandedImageBox::GetHeightScale()
+	{
+		if (m_pImageInstance)
+			return ((CGraphicExpandedImageInstance*)m_pImageInstance)->GetHeightScale();
+
+		return 0;
+	}
+
 	void CExpandedImageBox::SetOrigin(float fx, float fy)
 	{
 		if (!m_pImageInstance)

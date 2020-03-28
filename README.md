@@ -14,4 +14,8 @@ This project aims to complement the UI with whats missing and rework aspects tha
  - GetVerticalAlign
  - GetTextHorizontalAlign
  - GetTextVerticalAlign
+ - GetWindowPreviousWidth
+ - GetWindowPreviousHeight
+ - GetWidthScale
+ - GetHeightScale
  

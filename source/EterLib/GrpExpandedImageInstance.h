@@ -31,6 +31,10 @@ class CGraphicExpandedImageInstance : public CGraphicImageInstance
 		void SetOrigin(float fx, float fy);
 		void SetRotation(float fRotation);
 		void SetScale(float fx, float fy);
+
+		float GetWidthScale() { return m_v2Scale.x; }
+		float GetHeightScale() { return m_v2Scale.y; }
+
 		void SetRenderingRect(float fLeft, float fTop, float fRight, float fBottom);
 		void SetRenderingMode(int iMode);
 

@@ -2091,6 +2091,24 @@ PyObject * wndImageSetScale(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndImageGetWidthScale(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	return Py_BuildValue("f", ((UI::CExpandedImageBox*)pWindow)->GetWidthScale());
+}
+
+PyObject * wndImageGetHeightScale(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	return Py_BuildValue("f", ((UI::CExpandedImageBox*)pWindow)->GetHeightScale());
+}
+
 PyObject * wndImageSetOrigin(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2554,6 +2572,8 @@ void initwndMgr()
 		{ "GetHeight",					wndImageGetHeight,					METH_VARARGS },
 		// ExpandedImageBox
 		{ "SetScale",					wndImageSetScale,					METH_VARARGS },
+		{ "GetWidthScale",				wndImageGetWidthScale,				METH_VARARGS },
+		{ "GetHeightScale",				wndImageGetHeightScale,				METH_VARARGS },
 		{ "SetOrigin",					wndImageSetOrigin,					METH_VARARGS },
 		{ "SetRotation",				wndImageSetRotation,				METH_VARARGS },
 		{ "SetRenderingRect",			wndImageSetRenderingRect,			METH_VARARGS },
