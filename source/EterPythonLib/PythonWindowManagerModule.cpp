@@ -570,6 +570,26 @@ PyObject * wndMgrSetWindowVerticalAlign(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndMgrGetHorizontalAlign(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWin;
+
+	if (!PyTuple_GetWindow(poArgs, 0, &pWin))
+		return Py_BuildException();
+
+	return Py_BuildValue("b", pWin->GetHorizontalAlign());
+}
+
+PyObject * wndMgrGetVerticalAlign(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWin;
+
+	if (!PyTuple_GetWindow(poArgs, 0, &pWin))
+		return Py_BuildException();
+
+	return Py_BuildValue("b", pWin->GetVerticalAlign());
+}
+
 PyObject * wndMgrIsIn(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWin;
@@ -1625,16 +1645,18 @@ PyObject * wndTextSetMax(PyObject * poSelf, PyObject * poArgs)
 	((UI::CTextLine*)pWindow)->SetMax(iMax);
 	return Py_BuildNone();
 }
+
 PyObject * wndTextSetHorizontalAlign(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
 	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
 		return Py_BuildException();
-	int iType;
-	if (!PyTuple_GetInteger(poArgs, 1, &iType))
+
+	BYTE align;
+	if (!PyTuple_GetInteger(poArgs, 1, &align))
 		return Py_BuildException();
 
-	((UI::CTextLine*)pWindow)->SetHorizontalAlign(iType);
+	((UI::CTextLine*)pWindow)->SetHorizontalAlign((CGraphicTextInstance::EHorizontalAlign)align);
 	return Py_BuildNone();
 }
 PyObject * wndTextSetVerticalAlign(PyObject * poSelf, PyObject * poArgs)
@@ -1642,13 +1664,33 @@ PyObject * wndTextSetVerticalAlign(PyObject * poSelf, PyObject * poArgs)
 	UI::CWindow * pWindow;
 	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
 		return Py_BuildException();
-	int iType;
-	if (!PyTuple_GetInteger(poArgs, 1, &iType))
+
+	BYTE align;
+	if (!PyTuple_GetInteger(poArgs, 1, &align))
 		return Py_BuildException();
 
-	((UI::CTextLine*)pWindow)->SetVerticalAlign(iType);
+	((UI::CTextLine*)pWindow)->SetVerticalAlign((CGraphicTextInstance::EVerticalAlign)align);
 	return Py_BuildNone();
 }
+
+PyObject * wndTextGetHorizontalAlign(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	return Py_BuildValue("b", ((UI::CTextLine*)pWindow)->GetHorizontalAlign());
+}
+
+PyObject * wndTextGetVerticalAlign(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	return Py_BuildValue("b", ((UI::CTextLine*)pWindow)->GetVerticalAlign());
+}
+
 PyObject * wndTextSetSecret(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -1697,6 +1739,7 @@ PyObject * wndTextSetMultiLine(PyObject * poSelf, PyObject * poArgs)
 	((UI::CTextLine*)pWindow)->SetMultiLine(iFlag);
 	return Py_BuildNone();
 }
+
 PyObject * wndTextSetFontName(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -1709,6 +1752,7 @@ PyObject * wndTextSetFontName(PyObject * poSelf, PyObject * poArgs)
 	((UI::CTextLine*)pWindow)->SetFontName(szFontName);
 	return Py_BuildNone();
 }
+
 PyObject * wndTextSetFontColor(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -1751,6 +1795,7 @@ PyObject * wndTextSetFontColor(PyObject * poSelf, PyObject * poArgs)
 
 	return Py_BuildNone();
 }
+
 PyObject * wndTextSetLimitWidth(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2027,6 +2072,7 @@ PyObject * wndImageSetScale(PyObject * poSelf, PyObject * poArgs)
 
 	return Py_BuildNone();
 }
+
 PyObject * wndImageSetOrigin(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2043,6 +2089,7 @@ PyObject * wndImageSetOrigin(PyObject * poSelf, PyObject * poArgs)
 
 	return Py_BuildNone();
 }
+
 PyObject * wndImageSetRotation(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2056,6 +2103,7 @@ PyObject * wndImageSetRotation(PyObject * poSelf, PyObject * poArgs)
 
 	return Py_BuildNone();
 }
+
 PyObject * wndImageSetRenderingRect(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2078,9 +2126,12 @@ PyObject * wndImageSetRenderingRect(PyObject * poSelf, PyObject * poArgs)
 		((UI::CExpandedImageBox*)pWindow)->SetRenderingRect(fLeft, fTop, fRight, fBottom);
 	else if (pWindow->IsType(UI::CAniImageBox::Type()))
 		((UI::CAniImageBox*)pWindow)->SetRenderingRect(fLeft, fTop, fRight, fBottom);
+	else if (pWindow->IsType(UI::CButton::Type()))
+		((UI::CButton*)pWindow)->SetRenderingRect(fLeft, fTop, fRight, fBottom);
 
 	return Py_BuildNone();
 }
+
 PyObject * wndImageSetRenderingMode(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2148,6 +2199,7 @@ PyObject * wndButtonSetOverVisual(PyObject * poSelf, PyObject * poArgs)
 
 	return Py_BuildNone();
 }
+
 PyObject * wndButtonSetDownVisual(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2161,6 +2213,7 @@ PyObject * wndButtonSetDownVisual(PyObject * poSelf, PyObject * poArgs)
 
 	return Py_BuildNone();
 }
+
 PyObject * wndButtonSetDisableVisual(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2174,6 +2227,7 @@ PyObject * wndButtonSetDisableVisual(PyObject * poSelf, PyObject * poArgs)
 
 	return Py_BuildNone();
 }
+
 PyObject * wndButtonGetUpVisualFileName(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2182,6 +2236,7 @@ PyObject * wndButtonGetUpVisualFileName(PyObject * poSelf, PyObject * poArgs)
 
 	return Py_BuildValue("s", ((UI::CButton*)pWindow)->GetUpVisualFileName());
 }
+
 PyObject * wndButtonGetOverVisualFileName(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2248,6 +2303,7 @@ PyObject * wndButtonSetUp(PyObject * poSelf, PyObject * poArgs)
 
 	return Py_BuildNone();
 }
+
 PyObject * wndButtonSetRestrictMovementArea(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2365,11 +2421,15 @@ void initwndMgr()
 		{ "SetWindowPosition",			wndMgrSetWndPosition,				METH_VARARGS },
 		{ "GetWindowWidth",				wndMgrGetWndWidth,					METH_VARARGS },
 		{ "GetWindowHeight",			wndMgrGetWndHeight,					METH_VARARGS },
+
 		{ "GetWindowLocalPosition",		wndMgrGetWndLocalPosition,			METH_VARARGS },
 		{ "GetWindowGlobalPosition",	wndMgrGetWndGlobalPosition,			METH_VARARGS },
 		{ "GetWindowRect",				wndMgrGetWindowRect,				METH_VARARGS },
+		
 		{ "SetWindowHorizontalAlign",	wndMgrSetWindowHorizontalAlign,		METH_VARARGS },
 		{ "SetWindowVerticalAlign",		wndMgrSetWindowVerticalAlign,		METH_VARARGS },
+		{ "GetHorizontalAlign",			wndMgrGetHorizontalAlign,			METH_VARARGS },
+		{ "GetVerticalAlign",			wndMgrGetVerticalAlign,			METH_VARARGS },
 
 		{ "GetChildCount",				wndMgrGetChildCount,				METH_VARARGS },
 
@@ -2436,6 +2496,8 @@ void initwndMgr()
 		{ "SetMax",						wndTextSetMax,						METH_VARARGS },
 		{ "SetHorizontalAlign",			wndTextSetHorizontalAlign,			METH_VARARGS },
 		{ "SetVerticalAlign",			wndTextSetVerticalAlign,			METH_VARARGS },
+		{ "GetTextHorizontalAlign",		wndTextGetHorizontalAlign,			METH_VARARGS },
+		{ "GetTextVerticalAlign",		wndTextGetVerticalAlign,			METH_VARARGS },
 		{ "SetSecret",					wndTextSetSecret,					METH_VARARGS },
 		{ "SetOutline",					wndTextSetOutline,					METH_VARARGS },
 		{ "SetFeather",					wndTextSetFeather,					METH_VARARGS },

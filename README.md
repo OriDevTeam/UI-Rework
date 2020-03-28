@@ -10,3 +10,7 @@ This project aims to complement the UI with whats missing and rework aspects tha
  **New Python Calls**:
  - SetMouseWheel
  - GetRootParent
+ - GetHorizontalAlign
+ - GetHorizontalAlign
+ - GetTextHorizontalAlign
+ - GetTextHorizontalAlign

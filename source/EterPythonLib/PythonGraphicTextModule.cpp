@@ -232,11 +232,11 @@ PyObject* grpSetHorizontalAlign(PyObject* poSelf, PyObject* poArgs)
 	if (!PyTuple_GetTextInstance(poArgs, 0, &pTextInstance))
 		return Py_BuildException();
 
-	int iAlign;
-	if (!PyTuple_GetInteger(poArgs, 1, &iAlign))
+	BYTE align;
+	if (!PyTuple_GetInteger(poArgs, 1, &align))
 		return Py_BuildException();
 
-	pTextInstance->SetHorizonalAlign(iAlign);
+	pTextInstance->SetHorizontalAlign((CGraphicTextInstance::EHorizontalAlign)align);
 	return Py_BuildNone();
 }
 
@@ -246,11 +246,11 @@ PyObject* grpSetVerticalAlign(PyObject* poSelf, PyObject* poArgs)
 	if (!PyTuple_GetTextInstance(poArgs, 0, &pTextInstance))
 		return Py_BuildException();
 
-	int iAlign;
-	if (!PyTuple_GetInteger(poArgs, 1, &iAlign))
+	BYTE align;
+	if (!PyTuple_GetInteger(poArgs, 1, &align))
 		return Py_BuildException();
 
-	pTextInstance->SetVerticalAlign(iAlign);
+	pTextInstance->SetVerticalAlign((CGraphicTextInstance::EVerticalAlign)align);
 	return Py_BuildNone();
 }
 

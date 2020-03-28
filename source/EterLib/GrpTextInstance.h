@@ -12,15 +12,15 @@ class CGraphicTextInstance
 	public:
 		enum EHorizontalAlign
 		{
-			HORIZONTAL_ALIGN_LEFT		= 0x01,
-			HORIZONTAL_ALIGN_CENTER		= 0x02,
-			HORIZONTAL_ALIGN_RIGHT		= 0x03,
+			HORIZONTAL_ALIGN_LEFT		= 1,
+			HORIZONTAL_ALIGN_CENTER		= 2,
+			HORIZONTAL_ALIGN_RIGHT		= 3
 		};
 		enum EVerticalAlign
 		{
-			VERTICAL_ALIGN_TOP		= 0x10,
-			VERTICAL_ALIGN_CENTER	= 0x20,
-			VERTICAL_ALIGN_BOTTOM	= 0x30
+			VERTICAL_ALIGN_TOP		= 1,
+			VERTICAL_ALIGN_CENTER	= 2,
+			VERTICAL_ALIGN_BOTTOM	= 3
 		};
 
 	public:
@@ -48,8 +48,11 @@ class CGraphicTextInstance
 		void SetOutLineColor(DWORD color);
 		void SetOutLineColor(float r, float g, float b, float a = 1.0f);
 
-		void SetHorizonalAlign(int hAlign);
-		void SetVerticalAlign(int vAlign);
+		void SetHorizontalAlign(EHorizontalAlign hAlign) { m_hAlign = hAlign; }
+		void SetVerticalAlign(EVerticalAlign vAlign) { m_vAlign = vAlign; }
+		EHorizontalAlign GetHorizontalAlign() { return m_hAlign; }
+		EVerticalAlign GetVerticalAlign() { return m_vAlign; }
+
 		void SetMax(int iMax);
 		void SetTextPointer(CGraphicText* pText);
 		void SetValueString(const string& c_stValue);
@@ -66,7 +69,6 @@ class CGraphicTextInstance
 		WORD GetTextLineCount();
 
 		int PixelPositionToCharacterPosition(int iPixelPosition);
-		int GetHorizontalAlign();
 
 	protected:
 		void __Initialize();
@@ -91,8 +93,8 @@ class CGraphicTextInstance
 		WORD m_textWidth;
 		WORD m_textHeight;
 
-		BYTE m_hAlign;
-		BYTE m_vAlign;
+		EHorizontalAlign m_hAlign;
+		EVerticalAlign m_vAlign;
 
 		WORD m_iMax;
 		float m_fLimitWidth;

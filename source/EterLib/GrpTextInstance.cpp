@@ -810,7 +810,16 @@ void CGraphicTextInstance::Render(RECT * pClipRect)
 			case VERTICAL_ALIGN_CENTER:
 				sy -= float(m_textHeight) / 2.0f;
 				break;
-		}		
+		}
+
+		switch (m_hAlign)
+		{
+			case HORIZONTAL_ALIGN_CENTER:
+				sx -= float(m_textWidth) / 2.0f;
+				ex = sx + 2;
+				break;
+		}
+
 		// 최적화 사항
 		// 같은텍스쳐를 사용한다면... STRIP을 구성하고, 텍스쳐가 변경되거나 끝나면 DrawPrimitive를 호출해
 		// 최대한 숫자를 줄이도록하자!
@@ -993,16 +1002,6 @@ void CGraphicTextInstance::SetMultiLine(bool Value)
 	m_isMultiLine = Value;
 }
 
-void CGraphicTextInstance::SetHorizonalAlign(int hAlign)
-{
-	m_hAlign = hAlign;
-}
-
-void CGraphicTextInstance::SetVerticalAlign(int vAlign)
-{
-	m_vAlign = vAlign;
-}
-
 void CGraphicTextInstance::SetMax(int iMax)
 {
 	m_iMax = iMax;
@@ -1095,11 +1094,6 @@ int CGraphicTextInstance::PixelPositionToCharacterPosition(int iPixelPosition)
 	}
 
 	return -1;
-}
-
-int CGraphicTextInstance::GetHorizontalAlign()
-{
-	return m_hAlign;
 }
 
 void CGraphicTextInstance::__Initialize()

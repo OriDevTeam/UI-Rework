@@ -61,6 +61,8 @@ namespace UI
 
 			void			SetHorizontalAlign(DWORD dwAlign);
 			void			SetVerticalAlign(DWORD dwAlign);
+			EHorizontalAlign GetHorizontalAlign() { return m_HorizontalAlign; }
+			EVerticalAlign	GetVerticalAlign() { return m_VerticalAlign; }
 			void			SetPosition(long x, long y);
 			void			GetPosition(long * plx, long * ply);
 			long			GetPositionX( void ) const		{ return m_x; }
@@ -273,8 +275,12 @@ namespace UI
 			virtual ~CTextLine();
 
 			void SetMax(int iMax);
-			void SetHorizontalAlign(int iType);
-			void SetVerticalAlign(int iType);
+			
+			void SetHorizontalAlign(CGraphicTextInstance::EHorizontalAlign align) { m_TextInstance.SetHorizontalAlign(align); }
+			void SetVerticalAlign(CGraphicTextInstance::EVerticalAlign align) { m_TextInstance.SetVerticalAlign(align); }
+			CGraphicTextInstance::EHorizontalAlign	GetHorizontalAlign() { return m_TextInstance.GetHorizontalAlign(); }
+			CGraphicTextInstance::EVerticalAlign	GetVerticalAlign() { return m_TextInstance.GetVerticalAlign(); }
+			
 			void SetSecret(BOOL bFlag);
 			void SetOutline(BOOL bFlag);
 			void SetFeather(BOOL bFlag);
