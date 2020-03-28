@@ -507,7 +507,25 @@ PyObject * wndMgrGetWndHeight(PyObject * poSelf, PyObject * poArgs)
 	if (!PyTuple_GetWindow(poArgs, 0, &pWin))
 		return Py_BuildException();
 
-	return Py_BuildValue("i", pWin->GetHeight());
+	return Py_BuildValue("l", pWin->GetHeight());
+}
+
+PyObject * wndMgrGetWndPreviousWidth(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWin;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWin))
+		return Py_BuildException();
+
+	return Py_BuildValue("l", pWin->GetPreviousWidth());
+}
+
+PyObject * wndMgrGetWndPreviousHeight(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWin;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWin))
+		return Py_BuildException();
+
+	return Py_BuildValue("i", pWin->GetPreviousHeight());
 }
 
 PyObject * wndMgrGetWndLocalPosition(PyObject * poSelf, PyObject * poArgs)
@@ -2419,9 +2437,13 @@ void initwndMgr()
 
 		{ "SetWindowSize",				wndMgrSetWndSize,					METH_VARARGS },
 		{ "SetWindowPosition",			wndMgrSetWndPosition,				METH_VARARGS },
+		
 		{ "GetWindowWidth",				wndMgrGetWndWidth,					METH_VARARGS },
 		{ "GetWindowHeight",			wndMgrGetWndHeight,					METH_VARARGS },
-
+		
+		{ "GetWindowPreviousWidth",		wndMgrGetWndPreviousWidth,			METH_VARARGS },
+		{ "GetWindowPreviousHeight",	wndMgrGetWndPreviousHeight,			METH_VARARGS },
+		
 		{ "GetWindowLocalPosition",		wndMgrGetWndLocalPosition,			METH_VARARGS },
 		{ "GetWindowGlobalPosition",	wndMgrGetWndGlobalPosition,			METH_VARARGS },
 		{ "GetWindowRect",				wndMgrGetWindowRect,				METH_VARARGS },

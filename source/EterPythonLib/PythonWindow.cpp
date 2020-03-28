@@ -14,6 +14,8 @@ namespace UI
 		m_y(0),
 		m_lWidth(0),
 		m_lHeight(0),
+		m_previousWidth(0),
+		m_previousHeight(0),
 		m_poHandler(ppyObject),
 		m_bShow(false),
 		m_pParent(NULL),
@@ -190,6 +192,9 @@ namespace UI
 
 	void CWindow::SetSize(long width, long height)
 	{
+		m_previousWidth = m_lWidth;
+		m_previousHeight = m_lHeight;
+
 		m_lWidth = width;
 		m_lHeight = height;
 
@@ -377,9 +382,9 @@ namespace UI
 		}
 	}
 
-	void CWindow::OnMouseWheel(int length)
+	void CWindow::OnMouseWheel(int len)
 	{
-		PyCallClassMemberFunc(m_poHandler, "OnMouseWheel", Py_BuildValue("(i)", length));
+		PyCallClassMemberFunc(m_poHandler, "OnMouseWheel", Py_BuildValue("(i)", len));
 	}
 
 	void CWindow::OnMouseDrag(long lx, long ly)
@@ -945,7 +950,7 @@ namespace UI
 	CTextLine::CTextLine(PyObject * ppyObject) : CWindow(ppyObject)
 	{
 		m_TextInstance.SetColor(0.78f, 0.78f, 0.78f);
-		m_TextInstance.SetHorizonalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_LEFT);
+		m_TextInstance.SetHorizontalAlign(CGraphicTextInstance::HORIZONTAL_ALIGN_LEFT);
 		m_TextInstance.SetVerticalAlign(CGraphicTextInstance::VERTICAL_ALIGN_TOP);
 	}
 	CTextLine::~CTextLine()
@@ -957,14 +962,7 @@ namespace UI
 	{
 		m_TextInstance.SetMax(iMax);
 	}
-	void CTextLine::SetHorizontalAlign(int iType)
-	{
-		m_TextInstance.SetHorizonalAlign(iType);
-	}
-	void CTextLine::SetVerticalAlign(int iType)
-	{
-		m_TextInstance.SetVerticalAlign(iType);
-	}
+
 	void CTextLine::SetSecret(BOOL bFlag)
 	{
 		m_TextInstance.SetSecret(bFlag ? true : false);
@@ -981,6 +979,7 @@ namespace UI
 	{
 		m_TextInstance.SetMultiLine(bFlag ? true : false);
 	}
+
 	void CTextLine::SetFontName(const char * c_szFontName)
 	{
 		std::string stFontName = c_szFontName;
@@ -991,10 +990,12 @@ namespace UI
 		CGraphicText* pkResFont=static_cast<CGraphicText*>(pkRes);
 		m_TextInstance.SetTextPointer(pkResFont);
 	}
+
 	void CTextLine::SetFontColor(DWORD dwColor)
 	{
 		m_TextInstance.SetColor(dwColor);
 	}
+
 	void CTextLine::SetLimitWidth(float fWidth)
 	{
 		m_TextInstance.SetLimitWidth(fWidth);
@@ -1428,6 +1429,7 @@ namespace UI
 		((CGraphicExpandedImageInstance*)m_pImageInstance)->SetScale(fx, fy);
 		CWindow::SetSize(long(float(GetWidth())*fx), long(float(GetHeight())*fy));
 	}
+
 	void CExpandedImageBox::SetOrigin(float fx, float fy)
 	{
 		if (!m_pImageInstance)
@@ -1727,6 +1729,7 @@ namespace UI
 		SetCurrentVisual(&m_upVisual);
 		m_isPressed = FALSE;
 	}
+
 	void CButton::Up()
 	{
 		if (IsIn())
@@ -1736,10 +1739,12 @@ namespace UI
 
 		PyCallClassMemberFunc(m_poHandler, "CallEvent", BuildEmptyTuple());
 	}
+
 	void CButton::Over()
 	{
 		SetCurrentVisual(&m_overVisual);
 	}
+
 	void CButton::Down()
 	{
 		m_isPressed = TRUE;

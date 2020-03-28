@@ -56,8 +56,11 @@ namespace UI
 			void			SetName(const char * c_szName);
 			const char *	GetName()		{ return m_strName.c_str(); }
 			void			SetSize(long width, long height);
-			long			GetWidth()		{ return m_lWidth; }
-			long			GetHeight()		{ return m_lHeight; }
+			
+			long			GetWidth()				{ return m_lWidth; }
+			long			GetHeight()				{ return m_lHeight; }
+			long			GetPreviousWidth()		{ return m_previousWidth; }
+			long			GetPreviousHeight()		{ return m_previousHeight; }
 
 			void			SetHorizontalAlign(DWORD dwAlign);
 			void			SetVerticalAlign(DWORD dwAlign);
@@ -171,6 +174,7 @@ namespace UI
 			EVerticalAlign		m_VerticalAlign;
 			long				m_x, m_y;				// X,Y »ó´ëÁÂÇ¥
 			long				m_lWidth, m_lHeight;	// Å©±â
+			long				m_previousWidth, m_previousHeight;
 			RECT				m_rect;					// Global ÁÂÇ¥
 			RECT				m_limitBiasRect;		// limit bias °ª
 
