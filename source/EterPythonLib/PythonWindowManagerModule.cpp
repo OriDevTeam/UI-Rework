@@ -2042,6 +2042,15 @@ PyObject * wndImageLoadImage(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndImageGetImageFileName(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	return Py_BuildValue("s", ((UI::CImageBox*)pWindow)->GetImageFileName());
+}
+
 PyObject * wndImageSetDiffuseColor(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2577,6 +2586,7 @@ void initwndMgr()
 
 		// ImageBox
 		{ "LoadImage",					wndImageLoadImage,					METH_VARARGS },
+		{ "GetImageFileName",			wndImageGetImageFileName,			METH_VARARGS },
 		{ "SetDiffuseColor",			wndImageSetDiffuseColor,			METH_VARARGS },
 		{ "GetWidth",					wndImageGetWidth,					METH_VARARGS },
 		{ "GetHeight",					wndImageGetHeight,					METH_VARARGS },

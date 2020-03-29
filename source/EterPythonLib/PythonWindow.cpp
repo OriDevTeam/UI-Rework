@@ -975,10 +975,6 @@ namespace UI
 	{
 		m_TextInstance.SetFeather(bFlag ? true : false);
 	}
-	void CTextLine::SetMultiLine(BOOL bFlag)
-	{
-		m_TextInstance.SetMultiLine(bFlag ? true : false);
-	}
 
 	void CTextLine::SetFontName(const char * c_szFontName)
 	{
@@ -1442,7 +1438,7 @@ namespace UI
 		if (m_pImageInstance)
 			return ((CGraphicExpandedImageInstance*)m_pImageInstance)->GetHeightScale();
 
-		return 0;
+		return -1;
 	}
 
 	void CExpandedImageBox::SetOrigin(float fx, float fy)

@@ -348,6 +348,8 @@ namespace UI
 			virtual ~CImageBox();
 
 			BOOL LoadImage(const char * c_szFileName);
+			const char * GetImageFileName() { return m_pImageInstance->GetGraphicImagePointer()->GetFileName(); }
+			
 			void SetDiffuseColor(float fr, float fg, float fb, float fa);
 
 			int GetWidth();
