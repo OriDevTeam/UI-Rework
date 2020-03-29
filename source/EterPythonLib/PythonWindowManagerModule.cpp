@@ -1780,6 +1780,15 @@ PyObject * wndTextSetFontName(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndTextGetFontName(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	return Py_BuildValue("s", ((UI::CTextLine*)pWindow)->GetFontName());
+}
+
 PyObject * wndTextSetFontColor(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2571,7 +2580,9 @@ void initwndMgr()
 		{ "SetMultiLine",				wndTextSetMultiLine,				METH_VARARGS },
 		{ "IsMultiLine",				wndTextIsMultiLine,					METH_VARARGS },
 		{ "SetText",					wndTextSetText,						METH_VARARGS },
+		
 		{ "SetFontName",				wndTextSetFontName,					METH_VARARGS },
+		{ "GetFontName",				wndTextGetFontName,					METH_VARARGS },
 		
 		{ "SetFontColor",				wndTextSetFontColor,				METH_VARARGS },
 		{ "GetColor",					wndTextGetColor,					METH_VARARGS },

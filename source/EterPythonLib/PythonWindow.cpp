@@ -987,11 +987,6 @@ namespace UI
 		m_TextInstance.SetTextPointer(pkResFont);
 	}
 
-	void CTextLine::SetFontColor(DWORD dwColor)
-	{
-		m_TextInstance.SetColor(dwColor);
-	}
-
 	void CTextLine::SetLimitWidth(float fWidth)
 	{
 		m_TextInstance.SetLimitWidth(fWidth);

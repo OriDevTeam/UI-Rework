@@ -292,7 +292,11 @@ namespace UI
 			bool IsMultiLine() {return m_TextInstance.IsMultiLine();
 			}
 			void SetFontName(const char * c_szFontName);
-			void SetFontColor(DWORD dwColor);
+			const char * GetFontName();
+
+			void SetFontColor(DWORD dwColor) { m_TextInstance.SetColor(dwColor); }
+			DWORD GetColor() { return m_TextInstance.GetColor(); }
+
 			void SetLimitWidth(float fWidth);
 
 			void ShowCursor();
