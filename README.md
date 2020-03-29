@@ -5,6 +5,10 @@ This project aims to complement the UI with whats missing and rework aspects tha
 # Regarding Binary To Python
  **New Python Calls**:
  - OnMouseWheel
+ 
+ **Renamed Python Calls**:
+ - CallEvent -> OnUp
+ - DownEvent -> OnDown
 
 # Regarding Python To Binary
  **New Python Calls**:
@@ -18,4 +22,8 @@ This project aims to complement the UI with whats missing and rework aspects tha
  - GetWindowPreviousHeight
  - GetWidthScale
  - GetHeightScale
+ - IsMultiLine
+ - GetFontName
+ - GetImageFileName 
+ - GetColor
  

@@ -292,7 +292,7 @@ namespace UI
 			bool IsMultiLine() {return m_TextInstance.IsMultiLine();
 			}
 			void SetFontName(const char * c_szFontName);
-			const char * GetFontName();
+			const char * GetFontName() { return m_TextInstance.GetName(); }
 
 			void SetFontColor(DWORD dwColor) { m_TextInstance.SetColor(dwColor); }
 			DWORD GetColor() { return m_TextInstance.GetColor(); }
@@ -469,6 +469,8 @@ namespace UI
 			void Disable();
 
 			void SetUp();
+			void SetOver();
+			void SetDown();
 			void Up();
 			void Over();
 			void Down();
@@ -489,17 +491,17 @@ namespace UI
 
 			BOOL IsEnable();
 
-			void SetCurrentVisual(CGraphicImageInstance * pVisual);
+			void SetCurrentVisual(CGraphicExpandedImageInstance * pVisual);
 
 		protected:
 			BOOL m_bEnable;
 			BOOL m_isPressed;
 			BOOL m_isFlash;
-			CGraphicImageInstance * m_pcurVisual;
-			CGraphicImageInstance m_upVisual;
-			CGraphicImageInstance m_overVisual;
-			CGraphicImageInstance m_downVisual;
-			CGraphicImageInstance m_disableVisual;
+			CGraphicExpandedImageInstance * m_pcurVisual;
+			CGraphicExpandedImageInstance m_upVisual;
+			CGraphicExpandedImageInstance m_overVisual;
+			CGraphicExpandedImageInstance m_downVisual;
+			CGraphicExpandedImageInstance m_disableVisual;
 	};
 	class CRadioButton : public CButton
 	{

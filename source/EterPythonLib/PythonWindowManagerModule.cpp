@@ -2376,6 +2376,28 @@ PyObject * wndButtonSetUp(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndButtonSetOver(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	((UI::CButton*)pWindow)->SetOver();
+
+	return Py_BuildNone();
+}
+
+PyObject * wndButtonSetDown(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	((UI::CButton*)pWindow)->SetDown();
+
+	return Py_BuildNone();
+}
+
 PyObject * wndButtonSetRestrictMovementArea(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2640,6 +2662,8 @@ void initwndMgr()
 		{ "Disable",					wndButtonDisable,					METH_VARARGS },
 		{ "Down",						wndButtonDown,						METH_VARARGS },
 		{ "SetUp",						wndButtonSetUp,						METH_VARARGS },
+		{ "SetOver",					wndButtonSetOver,					METH_VARARGS },
+		{ "SetDown",					wndButtonSetDown,					METH_VARARGS },
 		{ "IsDown",						wndButtonIsDown,					METH_VARARGS },
 
 		// DragButton

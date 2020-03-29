@@ -1736,6 +1736,17 @@ namespace UI
 		m_isPressed = FALSE;
 	}
 
+	void CButton::SetOver()
+	{
+		SetCurrentVisual(&m_overVisual);
+	}
+
+	void CButton::SetDown()
+	{
+		SetCurrentVisual(&m_upVisual);
+		m_isPressed = TRUE;
+	}
+
 	void CButton::Up()
 	{
 		if (IsIn())
@@ -1743,19 +1754,20 @@ namespace UI
 		else
 			SetCurrentVisual(&m_upVisual);
 
-		PyCallClassMemberFunc(m_poHandler, "CallEvent", BuildEmptyTuple());
+		PyCallClassMemberFunc(m_poHandler, "OnUp", BuildEmptyTuple());
 	}
 
 	void CButton::Over()
 	{
 		SetCurrentVisual(&m_overVisual);
+		PyCallClassMemberFunc(m_poHandler, "OnOver", BuildEmptyTuple());
 	}
 
 	void CButton::Down()
 	{
 		m_isPressed = TRUE;
 		SetCurrentVisual(&m_downVisual);
-		PyCallClassMemberFunc(m_poHandler, "DownEvent", BuildEmptyTuple());
+		PyCallClassMemberFunc(m_poHandler, "OnDown", BuildEmptyTuple());
 	}
 
 	void CButton::OnUpdate()
@@ -1834,11 +1846,12 @@ namespace UI
 		PyCallClassMemberFunc(m_poHandler, "HideToolTip", BuildEmptyTuple());
 	}
 
-	void CButton::SetCurrentVisual(CGraphicImageInstance * pVisual)
+	void CButton::SetCurrentVisual(CGraphicExpandedImageInstance * pVisual)
 	{
 		m_pcurVisual = pVisual;
 		m_pcurVisual->SetPosition(m_rect.left, m_rect.top);
 	}
+
 
 	BOOL CButton::IsEnable()
 	{
