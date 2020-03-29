@@ -43,7 +43,9 @@ class CGraphicTextInstance
 		void HideOutLine();
 
 		void SetColor(DWORD color);
-		void SetColor(float r, float g, float b, float a = 1.0f);
+		void SetColor(float r, float g, float b, float a = 1.0f) { SetColor(D3DXCOLOR(r, g, b, a)); }
+		DWORD GetColor() { return m_dwTextColor; }
+
 
 		void SetOutLineColor(DWORD color);
 		void SetOutLineColor(float r, float g, float b, float a = 1.0f);

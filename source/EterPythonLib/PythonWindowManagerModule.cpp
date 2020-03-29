@@ -1823,6 +1823,15 @@ PyObject * wndTextSetFontColor(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndTextGetColor(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+
+	return Py_BuildValue("l", ((UI::CTextLine*)pWindow)->GetColor());
+}
+
 PyObject * wndTextSetLimitWidth(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWindow;
@@ -2563,7 +2572,10 @@ void initwndMgr()
 		{ "IsMultiLine",				wndTextIsMultiLine,					METH_VARARGS },
 		{ "SetText",					wndTextSetText,						METH_VARARGS },
 		{ "SetFontName",				wndTextSetFontName,					METH_VARARGS },
+		
 		{ "SetFontColor",				wndTextSetFontColor,				METH_VARARGS },
+		{ "GetColor",					wndTextGetColor,					METH_VARARGS },
+		
 		{ "SetLimitWidth",				wndTextSetLimitWidth,				METH_VARARGS },
 		{ "GetText",					wndTextGetText,						METH_VARARGS },
 		{ "GetTextSize",				wndTextGetTextSize,					METH_VARARGS },

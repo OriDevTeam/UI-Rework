@@ -960,11 +960,6 @@ void CGraphicTextInstance::SetColor(DWORD color)
 	}
 }
 
-void CGraphicTextInstance::SetColor(float r, float g, float b, float a)
-{
-	SetColor(D3DXCOLOR(r, g, b, a));
-}
-
 void CGraphicTextInstance::SetOutLineColor(DWORD color)
 {
 	m_dwOutLineColor=color;
