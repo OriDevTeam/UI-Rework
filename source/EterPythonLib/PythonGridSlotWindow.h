@@ -16,6 +16,7 @@ namespace UI
 			void Destroy();
 
 			void ArrangeGridSlot(DWORD dwStartIndex, DWORD dwxCount, DWORD dwyCount, int ixSlotSize, int iySlotSize, int ixTemporarySize, int iyTemporarySize);
+			void SetGridSlotsPosition(int x, int y);
 
 		protected:
 			void __Initialize();

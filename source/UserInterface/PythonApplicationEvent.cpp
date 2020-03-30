@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "PythonApplication.h"
+#include "../EterPythonLib/PythonWindow.h"
 #include "../eterlib/Camera.h"
 
 void CPythonApplication::OnCameraUpdate()
