@@ -1852,6 +1852,13 @@ namespace UI
 		m_pcurVisual->SetPosition(m_rect.left, m_rect.top);
 	}
 
+	void CButton::SetRenderingRect(float fLeft, float fTop, float fRight, float fBottom)
+	{
+		if (!m_pcurVisual)
+			return;
+
+		((CGraphicExpandedImageInstance*)m_pcurVisual)->SetRenderingRect(fLeft, fTop, fRight, fBottom);
+	}
 
 	BOOL CButton::IsEnable()
 	{

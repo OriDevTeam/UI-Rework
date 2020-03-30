@@ -464,6 +464,8 @@ namespace UI
 			const char * GetOverVisualFileName();
 			const char * GetDownVisualFileName();
 
+			void SetRenderingRect(float fLeft, float fTop, float fRight, float fBottom);
+
 			void Flash();
 			void Enable();
 			void Disable();

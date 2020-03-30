@@ -27,3 +27,4 @@ This project aims to complement the UI with whats missing and rework aspects tha
  - GetImageFileName 
  - GetColor
  
+ 

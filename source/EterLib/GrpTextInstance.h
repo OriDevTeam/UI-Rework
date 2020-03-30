@@ -46,6 +46,7 @@ class CGraphicTextInstance
 		void SetColor(float r, float g, float b, float a = 1.0f) { SetColor(D3DXCOLOR(r, g, b, a)); }
 		DWORD GetColor() { return m_dwTextColor; }
 
+		const char * GetName() { return m_roText->GetFileName(); }
 
 		void SetOutLineColor(DWORD color);
 		void SetOutLineColor(float r, float g, float b, float a = 1.0f);
