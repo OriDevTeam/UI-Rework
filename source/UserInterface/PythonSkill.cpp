@@ -2021,8 +2021,6 @@ PyObject * skillGetIconImage(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildValue("i", c_pSkillData->pImage);
 }
 
-
-
 PyObject * skillGetIconInstance(PyObject * poSelf, PyObject * poArgs)
 {
 	int iSkillIndex;

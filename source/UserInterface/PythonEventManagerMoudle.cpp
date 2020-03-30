@@ -46,6 +46,20 @@ PyObject * eventSetRestrictedCount(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * eventSetVisibleLineCount(PyObject * poSelf, PyObject * poArgs)
+{
+	int iIndex;
+	if (!PyTuple_GetInteger(poArgs, 0, &iIndex))
+		return Py_BuildException();
+
+	int iCount;
+	if (!PyTuple_GetInteger(poArgs, 1, &iCount))
+		return Py_BuildException();
+
+	CPythonEventManager::Instance().SetVisibleLineCount(iIndex, iCount);
+	return Py_BuildNone();
+}
+
 PyObject * eventGetEventSetLocalYPosition(PyObject * poSelf, PyObject * poArgs)
 {
 	int iIndex;
@@ -278,6 +292,7 @@ void initEvent()
 		{ "ClearEventSet",				eventClearEventSet,					METH_VARARGS },
 
 		{ "SetRestrictedCount",			eventSetRestrictedCount,			METH_VARARGS },
+		{ "SetVisibleLineCount",		eventSetVisibleLineCount,			METH_VARARGS },
 
 		{ "GetEventSetLocalYPosition",	eventGetEventSetLocalYPosition,		METH_VARARGS },
 		{ "AddEventSetLocalYPosition",	eventAddEventSetLocalYPosition,		METH_VARARGS },
