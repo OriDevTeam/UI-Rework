@@ -10,21 +10,42 @@ This project aims to complement the UI with whats missing and rework aspects tha
  - CallEvent -> OnUp
  - DownEvent -> OnDown
 
-# Regarding Python To Binary
- **New Python Calls**:
+# New Functions Regarding Python To Binary
+ **Player Module(player):**
  - SetMouseWheel
+ 
+ **Window(CWindow):**
  - GetRootParent
  - GetHorizontalAlign
  - GetVerticalAlign
- - GetTextHorizontalAlign
- - GetTextVerticalAlign
  - GetWindowPreviousWidth
  - GetWindowPreviousHeight
+ 
+ **ImageBox Window(CExpandedImageBox):**
  - GetWidthScale
  - GetHeightScale
- - IsMultiLine
- - GetFontName
  - GetImageFileName 
+ 
+ **Text Window(CTextLine):**
+ - GetTextHorizontalAlign
+ - GetTextVerticalAlign
+ - GetFontName
+ - IsMultiLine
  - GetColor
+ 
+ **Button Window(CButton):**
+ - SetRenderingRect
+ - SetOver
+ - SetDown
+ 
+ **Slot Window(SetSlotPosition):**
+ - SetSlotWithoutIcon
+ - SetSlotPosition
+ 
+ **Grid Slot Window(CGridSlotWindow):**
+ - SetGridSlotsPosition
+ 
+ **Event Module(event):**
+ - SetVisibleLineCount
  
  
