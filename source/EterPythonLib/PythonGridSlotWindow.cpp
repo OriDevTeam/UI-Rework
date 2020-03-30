@@ -299,6 +299,22 @@ void CGridSlotWindow::ArrangeGridSlot(DWORD dwStartIndex, DWORD dwxCount, DWORD 
 	SetSize(iWidth, iHeight);
 }
 
+void CGridSlotWindow::SetGridSlotsPosition(int xOffset, int yOffset)
+{
+	DWORD x, y;
+
+	for (x = 0; x < m_dwxCount; ++x)
+	for (y = 0; y < m_dwyCount; ++y)
+	{
+		TSlot * pSlot;
+		if (!GetGridSlotPointer(x, y, &pSlot))
+			continue;
+
+		pSlot->xOffset = xOffset;
+		pSlot->yOffset = yOffset;
+	}
+}
+
 void CGridSlotWindow::OnRefreshSlot()
 {
 	DWORD x, y;

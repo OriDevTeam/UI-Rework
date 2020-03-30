@@ -833,6 +833,32 @@ PyObject * wndMgrArrangeSlot(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndMgrSetGridSlotsPosition(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWin;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWin))
+		return Py_BuildException();
+
+	int xOffset;
+	if (!PyTuple_GetInteger(poArgs, 1, &xOffset))
+		return Py_BuildException();
+
+	int yOffset;
+	if (!PyTuple_GetInteger(poArgs, 2, &yOffset))
+		return Py_BuildException();
+
+	if (!pWin->IsType(UI::CGridSlotWindow::Type()))
+	{
+		TraceError("wndMgr.SetGridSlotsPosition : not a grid window");
+		return Py_BuildException();
+	}
+
+	UI::CGridSlotWindow * pGridSlotWin = (UI::CGridSlotWindow *)pWin;
+	pGridSlotWin->SetGridSlotsPosition(xOffset, yOffset);
+
+	return Py_BuildNone();
+}
+
 PyObject * wndMgrSetSlotBaseImage(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWin;
@@ -2624,6 +2650,7 @@ void initwndMgr()
 		// Slot Window
 		{ "AppendSlot",					wndMgrAppendSlot,					METH_VARARGS },
 		{ "ArrangeSlot",				wndMgrArrangeSlot,					METH_VARARGS },
+		{ "SetGridSlotsPosition",		wndMgrSetGridSlotsPosition,			METH_VARARGS },
 		{ "ClearSlot",					wndMgrClearSlot,					METH_VARARGS },
 		{ "ClearAllSlot",				wndMgrClearAllSlot,					METH_VARARGS },
 		{ "HasSlot",					wndMgrHasSlot,						METH_VARARGS },
