@@ -38,7 +38,7 @@ This project aims to complement the UI with whats missing and rework aspects tha
  - SetOver
  - SetDown
  
- **Slot Window(SetSlotPosition):**
+ **Slot Window(CSlotWindow):**
  - SetSlotWithoutIcon
  - SetSlotPosition
  
