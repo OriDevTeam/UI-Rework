@@ -218,6 +218,8 @@ void CSlotWindow::AppendSlot(DWORD dwIndex, int ixPosition, int iyPosition, int 
 	Slot.pSlotButton = NULL;
 	Slot.pSignImage = NULL;
 	Slot.pFinishCoolTimeEffect = NULL;
+	Slot.xOffset = 0;
+	Slot.yOffset = 0;
 
 	ClearSlot(&Slot);
 	Slot.dwSlotNumber = dwIndex;
@@ -504,6 +506,16 @@ void CSlotWindow::SetSlotCoolTime(DWORD dwIndex, float fCoolTime, float fElapsed
 
 	pSlot->fCoolTime = fCoolTime;
 	pSlot->fStartCoolTime = CTimer::Instance().GetCurrentSecond() - fElapsedTime;
+}
+
+void CSlotWindow::SetSlotPosition(DWORD dwIndex, int x, int y)
+{
+	TSlot * pSlot;
+	if (!GetSlotPointer(dwIndex, &pSlot))
+		return;
+
+	pSlot->xOffset = x;
+	pSlot->yOffset = y;
 }
 
 void CSlotWindow::ActivateSlot(DWORD dwIndex)
@@ -1023,7 +1035,7 @@ void CSlotWindow::OnRender()
 
 		if (rSlot.pInstance)
 		{
-			rSlot.pInstance->SetPosition(m_rect.left + rSlot.ixPosition, m_rect.top + rSlot.iyPosition);
+			rSlot.pInstance->SetPosition(m_rect.left + rSlot.ixPosition + rSlot.xOffset, m_rect.top + rSlot.iyPosition + rSlot.yOffset);
 			rSlot.pInstance->Render();
 		}
 

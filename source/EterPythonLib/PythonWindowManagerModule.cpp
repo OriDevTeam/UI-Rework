@@ -1358,6 +1358,33 @@ PyObject * wndMgrSetSlotCoolTime(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndMgrSetSlotPosition(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWin;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWin))
+		return Py_BuildException();
+
+	int iSlotIndex;
+	if (!PyTuple_GetInteger(poArgs, 1, &iSlotIndex))
+		return Py_BuildException();
+
+	int x;
+	if (!PyTuple_GetInteger(poArgs, 2, &x))
+		return Py_BuildException();
+
+	int y;
+	if (!PyTuple_GetInteger(poArgs, 3, &y))
+		return Py_BuildException();
+
+	if (!pWin->IsType(UI::CSlotWindow::Type()))
+		return Py_BuildException();
+
+	UI::CSlotWindow * pSlotWin = (UI::CSlotWindow *)pWin;
+	pSlotWin->SetSlotPosition(iSlotIndex, x, y);
+
+	return Py_BuildNone();
+}
+
 PyObject * wndMgrSetToggleSlot(PyObject * poSelf, PyObject * poArgs)
 {
 	assert(!"wndMgrSetToggleSlot - 사용하지 않는 함수");
@@ -2605,6 +2632,7 @@ void initwndMgr()
 		{ "SetSlotCount",				wndMgrSetSlotCount,					METH_VARARGS },
 		{ "SetSlotCountNew",			wndMgrSetSlotCountNew,				METH_VARARGS },
 		{ "SetSlotCoolTime",			wndMgrSetSlotCoolTime,				METH_VARARGS },
+		{ "SetSlotPosition",			wndMgrSetSlotPosition,				METH_VARARGS },
 		{ "SetToggleSlot",				wndMgrSetToggleSlot,				METH_VARARGS },
 		{ "ActivateSlot",				wndMgrActivateSlot,					METH_VARARGS },
 		{ "DeactivateSlot",				wndMgrDeactivateSlot,				METH_VARARGS },

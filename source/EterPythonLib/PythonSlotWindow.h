@@ -61,6 +61,9 @@ namespace UI
 				int		ixCellSize;
 				int		iyCellSize;
 
+				int		xOffset;
+				int		yOffset;
+
 				BYTE	byxPlacedItemSize;
 				BYTE	byyPlacedItemSize;
 
@@ -107,6 +110,7 @@ namespace UI
 			void SetSlotCount(DWORD dwIndex, DWORD dwCount);
 			void SetSlotCountNew(DWORD dwIndex, DWORD dwGrade, DWORD dwCount);
 			void SetSlotCoolTime(DWORD dwIndex, float fCoolTime, float fElapsedTime = 0.0f);
+			void SetSlotPosition(DWORD dwIndex, int x, int y);
 			void ActivateSlot(DWORD dwIndex);
 			void DeactivateSlot(DWORD dwIndex);
 			void RefreshSlot();
