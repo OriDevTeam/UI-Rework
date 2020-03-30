@@ -1229,6 +1229,59 @@ PyObject * wndMgrSetSlot(PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+PyObject * wndMgrSetSlotWithoutIcon(PyObject * poSelf, PyObject * poArgs)
+{
+	UI::CWindow * pWin;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWin))
+		return Py_BuildException();
+
+	int iSlotIndex;
+	if (!PyTuple_GetInteger(poArgs, 1, &iSlotIndex))
+		return Py_BuildException();
+
+	int iItemIndex;
+	if (!PyTuple_GetInteger(poArgs, 2, &iItemIndex))
+		return Py_BuildException();
+
+	int iWidth;
+	if (!PyTuple_GetInteger(poArgs, 3, &iWidth))
+		return Py_BuildException();
+
+	int iHeight;
+	if (!PyTuple_GetInteger(poArgs, 4, &iHeight))
+		return Py_BuildException();
+
+	D3DXCOLOR diffuseColor;
+	PyObject* pTuple;
+	if (!PyTuple_GetObject(poArgs, 6, &pTuple))
+	{
+		diffuseColor = D3DXCOLOR(1.0, 1.0, 1.0, 1.0);
+		//return Py_BuildException();
+	}
+	else
+		// get diffuse color from pTuple
+	{
+		if (PyTuple_Size(pTuple) != 4)
+			return Py_BuildException();
+		if (!PyTuple_GetFloat(pTuple, 0, &diffuseColor.r))
+			return Py_BuildException();
+		if (!PyTuple_GetFloat(pTuple, 1, &diffuseColor.g))
+			return Py_BuildException();
+		if (!PyTuple_GetFloat(pTuple, 2, &diffuseColor.b))
+			return Py_BuildException();
+		if (!PyTuple_GetFloat(pTuple, 3, &diffuseColor.a))
+			return Py_BuildException();
+	}
+
+	if (!pWin->IsType(UI::CSlotWindow::Type()))
+		return Py_BuildException();
+
+	UI::CSlotWindow * pSlotWin = (UI::CSlotWindow *)pWin;
+	pSlotWin->SetSlot(iSlotIndex, iItemIndex, iWidth, iHeight, NULL, diffuseColor);
+
+	return Py_BuildNone();
+}
+
 PyObject * wndMgrSetSlotCount(PyObject * poSelf, PyObject * poArgs)
 {
 	UI::CWindow * pWin;
@@ -2548,6 +2601,7 @@ void initwndMgr()
 		{ "ClearAllSlot",				wndMgrClearAllSlot,					METH_VARARGS },
 		{ "HasSlot",					wndMgrHasSlot,						METH_VARARGS },
 		{ "SetSlot",					wndMgrSetSlot,						METH_VARARGS },
+		{ "SetSlotWithoutIcon",			wndMgrSetSlotWithoutIcon,			METH_VARARGS },
 		{ "SetSlotCount",				wndMgrSetSlotCount,					METH_VARARGS },
 		{ "SetSlotCountNew",			wndMgrSetSlotCountNew,				METH_VARARGS },
 		{ "SetSlotCoolTime",			wndMgrSetSlotCoolTime,				METH_VARARGS },
